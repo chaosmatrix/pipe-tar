@@ -23,6 +23,7 @@ const (
 
 var (
 	errFileNotExistTpl = "No Such File or Directory: %s"
+	errFileAlreadyExistTpl = "File or Directory Already Exist: %s"
 )
 
 var (
@@ -119,8 +120,8 @@ func main() {
 
 	// verify outputFile
 	_, err = os.Stat(outputFile)
-	if os.IsExist(err) {
-		panic(err)
+	if !os.IsNotExist(err) {
+		panic(fmt.Errorf(errFileAlreadyExistTpl, outputFile))
 	}
 	outputFile, err = verifyFilePath(outputFile, absPath)
 	if err != nil {
