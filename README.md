@@ -3,6 +3,7 @@
 ## Usage
 1. Examples
     * find /tmp/ -type f | ./pipe-tar --stdin --abs-path --output-file tmp.tar
+    * find /tmp/ -type f | tar -cvf tmp.tar -T-
 2. Options
     * --stdin: get file list from stdin
     * --delim: delimiter, default is '\n'
